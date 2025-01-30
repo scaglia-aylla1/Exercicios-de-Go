@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	
+)
 
 //utilizando o operador curto de declaração, atribua os valores as
 // variaveis com os identificadores "x", "y e "z" => 42, "James Bond" e true
@@ -19,7 +22,10 @@ func main() {
 	fmt.Println(x)
 	fmt.Println(y)
 	fmt.Println(z)
-
+   
+	// Ver o seu sistemas operacional
+	// fmt.Println(runtime.GOOS)
+	// fmt.Println(runtime.GOARCH)
 
 	
 }

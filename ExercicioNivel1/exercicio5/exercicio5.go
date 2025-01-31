@@ -33,3 +33,5 @@ func main()  {
 
 	
 }
+// %t booleano  
+//%T é um tipo de qualquer valor

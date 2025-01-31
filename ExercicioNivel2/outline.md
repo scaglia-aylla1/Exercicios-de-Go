@@ -2,28 +2,20 @@
 
 ### Tipo booleano
 
-- Agora vamos explorar os tipos de maneira mais detalhada. golang.org/ref/spec. A começar pelo bool.
+- Agora vamos explorar os tipos de maneira mais detalhada.
 - O tipo bool é um tipo binário, que só pode conter um dos dois valores: true e false. (Verdadeiro ou falso, sim ou não, zero ou um, etc.)
 - Sempre que você ver operadores relacionais (==, <=, >=, !=, <, >), o resultado da expressão será um valor booleano.
 - Booleans são fundamentais nas tomadas de decisões em lógica condicional, declarações switch, declarações if, fluxo de controle, etc.
-- Na prática:
-    - Zero value
-    - Atribuindo um valor
-    - Bool como resultado de operadores relacionais
-- Go Playground: https://play.golang.org/p/7joj615nZw
 
 ### Como os computadores funcionam
 
 - Isso é importante pois daqui pra frente vamos falar de ints, bytes, e etc.
 - Não é necessário um conhecimento a fundo mas é importante ter uma idéia de como as coisas funcionam por trás dos panos.
-- https://docs.google.com/presentation/d/1aVytiGOBVDMISFW-ZARJ5iFY1osU2XJIw0hQpNICXm8/
-- ASCII: https://en.wikipedia.org/wiki/ASCII
-- Filme: Alan Turing, The Immitation Game.
+- ASCII: <https://en.wikipedia.org/wiki/ASCII>
 
 ### Tipos numéricos
 
 - int vs. float: Números inteiros vs. números com frações.
-- golang.org/ref/spec → numeric types
 - Integers:
     - Números inteiros
     - int & uint → “implementation-specific sizes”
@@ -39,23 +31,6 @@
 - Floating point:
     - Números racionais ou reais
     - Regra geral: use somente float64
-- Na prática:
-    - Defaults com :=
-    - Tipagem com var
-    - Dá pra colocar número com vírgula em tipo int?
-    - Overflow
-    - Go Playground: https://play.golang.org/p/dt2x1ies5b
-- “implementation-specific sizes”? Runtime package. Word.
-    - GOOS
-    - GORUNTIME
-    - https://play.golang.org/p/1vp5DImIMM
-
-### Overflow
-
-- Um uint16, por exemplo, vai de 0 a 65535.
-- Que acontece se a gente tentar usar 65536?
-- Ou se a gente estiver em 65535 e tentar adicionar mais 1?
-- Playground: https://play.golang.org/p/t7Z4m127F2t
 
 ### Tipo string (cadeias de caracteres)
 
@@ -63,52 +38,73 @@
 - Imutáveis.
 - Uma string é um "slice of bytes" (ou, em português, uma fatia de bytes).
 - Na prática:
-    - %v %T
-    - Raw string literals
+    - %v(qualquer valorem um formato natural) %T(tipo de qualquer valor)
+    - Raw string literals => são strings apresentadas em sua forma bruta sem formatação, para isso colocamaos entre clases `` .
     - Conversão para slice of bytes: []byte(x)
-    - %#U, %#x
-    - Go Playground: https://play.golang.org/p/dt2x1ies5b & https://play.golang.org/p/PpDnspiyA_7
-- https://blog.golang.org/strings
+    - %#U(Unicode format), %#x(hexadecimal)<https://pkg.go.dev/fmt>
+    - <https://blog.golang.org/strings>
 
 ### Sistemas numéricos
 
 - Base-10: decimal, 0–9
 - Base-2: binário, 0–1
 - Base-16: hexadecimal, 0–f
-- https://docs.google.com/document/d/1GqXpubhMMIr4Sy5xwgiPIDh5PGVmVpF2u0c9vDrvykE/
-- Demonstração em Go.
+
 
 ### Constantes
 
 - São valores imutáveis.
 - Podem ser tipadas ou não:
-    - const oi = "Bom dia"
-    - const oi string = "Bom dia"
+    - const hello = "Bom dia"
+    - const hello string = "Bom dia"
 - As não tipadas só terão um tipo atribuido a elas quando forem usadas.
     - Ex. qual o tipo de 42? int? uint? float64?
     - Ou seja, é uma flexibilidade conveniente.
-- Na prática: int, float, string.
-    - const x = y
-    - const ( x = y )
 
 ### Iota
 
-- golang.org/ref/spec
-- Numa declaração de constantes, o identificador iota representa números sequenciais.
+- É um identificador especial pré-declarado integrado que simplifica a definição de constantes de inclemento, ela contém um valor inteiro.
+- É normalmente usada dentro de declarações constantes para gerar uma série de valores relacionados, incrementando em 1 para cada constante subsequente.Ex:
+```
+  const (a = iota
+         b = iota
+         c = iota
+  )
+```
+```
+  func main(){
+      fmt.Println(a, b, c)
+  }
+```
 - Na prática.
-    - iota, iota + 1, a = iota b c, reinicia em cada const, _
-- Go Playground: https://play.golang.org/p/eSrwoQjuYR
+    - iota,
+    - iota + 1,
+    - a = iota b c
+    - reinicia em cada const
+    -  _ pode ser usado para ignorar uma variável
+
 
 ### Deslocamento de bits
 
-- Deslocamento de bits é quando deslocamos digitos binários para a esquerda ou direita.
+- O deslocamento de bits em Go é a operação de mover dígitos binários para a direita ou para a esquerda.
 - Na prática:
-    - %d %b
-    - x << y
-    - iota * 10 << 10 = kb, mb, gb
-    
-- https://play.golang.org/p/7MOnbhx4R4
-- https://splice.com/blog/iota-elegant-constants-golang/
-- https://medium.com/learning-the-go-programming-language/bit-hacking-with-go-e0acee258827
+ ```
+  func main(){
+       a := 10     // 1010 em binário
+       result := a << 1  // 10100 em binário ou 20 em decimal
+       fmt.Println("a << 1:", result) //Output: 20
+  }
+```
+-  Explicação:
+```
+        1010  (a em binário)
+        << 1  (desloca todos os bits para a esquerda)
+        ----
+        10100  (resultado, equivalente a 20 em decimal)
+```
+     
+- Saiba mais:
+- <https://splice.com/blog/iota-elegant-constants-golang/>
+- <https://medium.com/learning-the-go-programming-language/bit-hacking-with-go-e0acee258827>
 
 - Fim da sessão!

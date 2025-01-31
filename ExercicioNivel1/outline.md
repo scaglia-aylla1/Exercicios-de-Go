@@ -1,17 +1,16 @@
 ### Hello world!
 
 - Estrutura básica: 
-    - package main.
-    - func main: é aqui que tudo começa, é aqui que tudo acaba.
-    - import.
+    - package => em Go, packages são uma forma de agrupar arquivos qu contenham código de um mesmo escopo, Ex: arquivos como structs, funções, variáveis, etc..
+    - package main => pacote principal
+    - func main: é onde a execução começa e termina, só pode haver um por pasta.
+    - import => são os pacotes nativos de go que importamos para usar nos nossos projetos. Ex: import "fmt"
 - Packages:
     - Pacotes são coleções de funções pré-prontas (ou não) que você pode utilizar.
     - Notação: pacote.Identificador. Exemplo: fmt.Println()
     - Documentação: fmt.Println.
 - Variáveis: "uma variável é um objeto (uma posição na memória) capaz de reter e representar um valor ou expressão."
-- Variáveis não utilizadas? Não pode: _ nelas.
-- ...funções variádicas.
-- Lição principal: package main, func main, pacote.Identificador.
+- Go não aceita variáveis não utilizadas, se declarou tem que usar ou vai dar erro.
 
 ### Operador curto de declaração
 
@@ -20,33 +19,44 @@
     - Tipagem automática
     - Só pode repetir se houverem variáveis novas 
     - != do assignment operator (operador de atribuição)
-    - Só funciona dentro de codeblocks
+    - Só funciona dentro de codeblocks(blocos de código)
 - Terminologia:
     - keywords (palavras-chave) são termos reservados
-    - operadores, operandos
+    - operadores => Operadores em programação são símbolos que representam ações específicas que podem ser executadas em expressões. Eles são usados para 
+    incrementar, decrementar, comparar e avaliar dados.Os operadores podem ser aritméticos, lógicos ou relacionais.(+  -  *  /)
+    - operandos => são os valores sobre os quais os operadores atuam. Os operandos podem ser: Constantes, Variáveis, Resultados de funções. 
     - statement (declaração, afirmação) → uma linha de código, uma instrução que forma uma ação, formada de expressões 
-    - expressão -> qualquer coisa que "produz um resultado"
-    - scope (abrangência)
-        - package-level scope
-- Lição principal:
-    - := utilizado pra criar novas variáveis, dentro de code blocks
-    - = para atribuir valores a variáveis já existentes
+    - expressão -> qualquer coisa que "produz um resultado" Ex: 2 + 2
+    - scope (abrangência) => o escopo de uma variável é definido pela sua posição no código-fonte. A palavra "escopo" refere-se à parte do programa em que a 
+     variável pode ser utilizada. 
+       - package-level scope => escopo global
+        - Variáveis globais
+          - Variáveis declaradas fora de qualquer função
+          - Podem ser acessadas por qualquer função no pacote
+        - Variáveis locais 
+          - São definidas dentro de uma função
+          - Os parâmetros formais de uma função também são tratados como variáveis locais
+       -Escopos de variáveis em Go
+          - O escopo de dentro pode acessar o de fora, mas não o contrário 
+          - A variável é "visível" dentro do seu escopo 
+       - Lição principal:
+          -  := utilizado pra criar novas variáveis, dentro de code blocks
+          -  = para atribuir valores a variáveis já existentes
 
 ### A palavra-chave var
 
 - Variável declarada em um code block é undefined em outro
 - Para variáveis com uma abrangência maior, package level scope, utilizamos `var`
 - Funciona em qualquer lugar
-- Prestar atenção: chaves, colchetes, parênteses
 
 ### Explorando tipos
 
-- Tipos em Go são extremamente importantes. (Veremos mais quando chegarmos em métodos e interfaces.)
+- Tipos em Go são extremamente importantes.
 - Tipos em Go são estáticos.
 - Ao declarar uma variável para conter valores de um certo tipo, essa variável só poderá conter valores desse tipo.
 - O tipo pode ser deduzido pelo compilador:
     - x := 10
-    - var y = "a tia do batima"
+    - var y = "Eu amo Coca cola"
 - Ou pode ser declarado especificamente:
     - var w string = "isso é uma string"
     - var z int = 15
@@ -55,7 +65,7 @@
     - int, string, bool
 - Tipos de dados compostos: são tipos compostos de tipos primitivos, e criados pelo usuário
     - slice, array, struct, map
-- O ato de definir, criar, estruturar tipos compostos chama-se composição. Veremos muito disso futuramente.
+- O ato de definir, criar, estruturar tipos compostos chama-se composição.
 
 ### Valor zero
 
@@ -93,11 +103,9 @@
 
 ### Criando seu próprio tipo
 
-- Revisando: tipos em Go são extremamente importantes. (Veremos mais quando chegarmos em métodos e interfaces.)
-- Tem uma história que Bill Kennedy dizia que se um dia fizesse uma tattoo, ela diria "type is life."
+- Tipos em Go são extremamente importantes. tipos são fixos. Uma vez declarada uma variável como de um certo tipo, isso é imutável.
 - Grande parte dos aspectos mais avançados de Go dependem quase que exclusivamente de tipos.
 - Como fundação para estas ferramentas, vamos aprender a declarar nossos próprios tipos.
-- Revisando: tipos são fixos. Uma vez declarada uma variável como de um certo tipo, isso é imutável.
 - type hotdog int → var b hotdog (main hotdog)
 - Uma variável de tipo hotdog não pode ser atribuida com o valor de uma variável tipo int, mesmo que este seja o tipo subjacente de hotdog. 
 
